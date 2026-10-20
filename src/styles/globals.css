@@ -1,0 +1,156 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-forest-green text-ivory antialiased selection:bg-golden-yellow selection:text-forest-dark;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    width: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', 'Playfair Display', serif;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #052F1D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #176B43;
+    border-radius: 4px;
+  }
+  /* Accessible high-contrast focus ring for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #F2B52C !important;
+    outline-offset: 2px !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-golden-yellow to-golden-light text-forest-dark font-bold px-6 py-3 rounded-xl hover:shadow-gold-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-golden-light/40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 bg-forest-dark/80 backdrop-blur-sm border border-emerald/40 text-ivory font-semibold px-6 py-3 rounded-xl hover:bg-forest-light/60 hover:border-golden-yellow/60 hover:text-golden-yellow transition-all duration-200;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2 border border-golden-yellow/60 text-golden-yellow font-semibold px-5 py-2.5 rounded-xl hover:bg-golden-yellow hover:text-forest-dark transition-all duration-200;
+  }
+
+  .badge-emerald {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald/20 text-leaf-light border border-emerald/40;
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-golden-yellow/20 text-golden-yellow border border-golden-yellow/40;
+  }
+
+  .badge-river {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-river-blue/20 text-river-light border border-river-blue/40;
+  }
+
+  /* 3D sculpted card */
+  .card-3d {
+    @apply bg-gradient-to-b from-forest-dark/95 to-forest-deeper/95 border border-emerald/25 rounded-2xl p-6 shadow-nature transition-all duration-300;
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover {
+    @apply border-golden-yellow/40 shadow-nature-lg;
+    transform: translateY(-4px) scale(1.008);
+  }
+
+  /* Sculpted 3D Emblem Card with directional rim light echoing the logo */
+  .card-sculpted {
+    @apply relative bg-gradient-to-br from-forest-dark via-forest-deeper to-[#02180d] border border-golden-yellow/25 rounded-3xl p-6 sm:p-8 shadow-sculpted transition-all duration-300 overflow-hidden;
+    box-shadow: 0 16px 36px -8px rgba(4, 35, 22, 0.75), inset 0 1px 1px rgba(255, 245, 220, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .card-sculpted:hover {
+    @apply border-golden-yellow/50;
+    box-shadow: 0 20px 42px -6px rgba(4, 35, 22, 0.85), 0 0 24px rgba(242, 181, 44, 0.15), inset 0 1px 2px rgba(255, 245, 220, 0.35);
+  }
+
+  /* Saffron-accented button */
+  .btn-saffron {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-to-r from-saffron to-golden-yellow text-forest-deeper font-bold px-6 py-3 rounded-xl hover:shadow-gold-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 border border-golden-light/40;
+  }
+
+  /* Light theme card */
+  .card-cream {
+    @apply bg-cream text-earth-dark border border-emerald/15 rounded-2xl p-6 shadow-soft;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-forest-deeper/70 border border-emerald/30 text-ivory placeholder-ivory-muted/60 focus:outline-none focus:border-golden-yellow focus:ring-1 focus:ring-golden-yellow transition-all duration-200;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Subtle glow keyframes */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+@keyframes riverFlow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 40; }
+}
+
+.animate-river-flow {
+  animation: riverFlow 3s linear infinite;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse-glow, .animate-float, .animate-river-flow {
+    animation: none !important;
+  }
+}
+
